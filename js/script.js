@@ -10,7 +10,10 @@ Object.prototype.inherit = function (Parent) {
   };
 };
 
-function Main() {}
+function Main() {
+  this.x = 9;
+  this.y = 9;
+}
 
 Main.prototype.init = function () {
   var draw = SVG().addTo(".container").size(300, 300);
@@ -25,11 +28,9 @@ Main.prototype.getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-function Grid(xlength, ylength) {
+function Grid() {
   this._super();
 
-  this.x = xlength - 1;
-  this.y = ylength - 1;
   this.gridArr = [];
 }
 
