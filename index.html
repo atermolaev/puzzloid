@@ -7,8 +7,11 @@
         <script lang="javascript">
             window.onload = function(){
                 const main = new Main();
+                const grid = new Grid(10, 10);
 
                 main.init();
+                grid.getRandomGridArr();
+                console.log(grid.gridArr);
             }
         </script>
     </head>

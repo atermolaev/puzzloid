@@ -17,6 +17,37 @@ Main.prototype.init = function () {
   });
 };
 
-function Box() {}
+Main.prototype.getRandomInt = function (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-Box.inherit(Main);
+function Grid(xlength, ylength) {
+  this.x = xlength - 1;
+  this.y = ylength - 1;
+  this.gridArr = [];
+}
+
+Grid.inherit(Main);
+
+Grid.prototype.getRandomGridArr = function () {
+  const arTopToBottom = [];
+  const arLeftToRight = [];
+
+  for (let i = 0; i <= this.y; i++) {
+    const arLineX = [];
+    for (let j = 0; j < this.x; j++) {
+      arLineX.push(this.getRandomInt(0, 1));
+    }
+    arTopToBottom.push(arLineX);
+  }
+
+  for (let i = 0; i < this.x; i++) {
+    const arLineY = [];
+    for (let j = 0; j <= this.y; j++) {
+      arLineY.push(this.getRandomInt(0, 1));
+    }
+    arLeftToRight.push(arLineY);
+  }
+
+  this.gridArr = [arTopToBottom, arLeftToRight];
+};
