@@ -4,6 +4,10 @@ Object.prototype.inherit = function (Parent) {
   this.prototype = new F();
   this.prototype.constructor = this;
   this.superclass = Parent.prototype;
+  // Добавляем ссылку на родительский конструктор
+  this.prototype._super = function () {
+    Parent.apply(this, arguments);
+  };
 };
 
 function Main() {}
@@ -22,6 +26,8 @@ Main.prototype.getRandomInt = function (min, max) {
 };
 
 function Grid(xlength, ylength) {
+  this._super();
+
   this.x = xlength - 1;
   this.y = ylength - 1;
   this.gridArr = [];
