@@ -57,4 +57,6 @@ Grid.prototype.getRandomGridArr = function () {
   }
 
   this.gridArr = [arTopToBottom, arLeftToRight];
+
+  return [arTopToBottom, arLeftToRight];
 };
