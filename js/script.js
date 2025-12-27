@@ -11,8 +11,9 @@ Object.prototype.inherit = function (Parent) {
 };
 
 function Main() {
-  this.x = 9;
-  this.y = 9;
+  // Количество пазлов по вертикали и горизонтали
+  this.x = 10;
+  this.y = 10;
 }
 
 Main.prototype.init = function () {
@@ -40,17 +41,20 @@ Grid.prototype.getRandomGridArr = function () {
   const arTopToBottom = [];
   const arLeftToRight = [];
 
-  for (let i = 0; i <= this.y; i++) {
+  const x = this.x - 1;
+  const y = this.y - 1;
+
+  for (let i = 0; i <= y; i++) {
     const arLineX = [];
-    for (let j = 0; j < this.x; j++) {
+    for (let j = 0; j < x; j++) {
       arLineX.push(this.getRandomInt(0, 1));
     }
     arTopToBottom.push(arLineX);
   }
 
-  for (let i = 0; i < this.x; i++) {
+  for (let i = 0; i < x; i++) {
     const arLineY = [];
-    for (let j = 0; j <= this.y; j++) {
+    for (let j = 0; j <= y; j++) {
       arLineY.push(this.getRandomInt(0, 1));
     }
     arLeftToRight.push(arLineY);
