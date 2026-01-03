@@ -4,7 +4,6 @@ Object.prototype.inherit = function (Parent) {
   this.prototype = new F();
   this.prototype.constructor = this;
   this.superclass = Parent.prototype;
-  // Добавляем ссылку на родительский конструктор
   this.prototype._super = function () {
     Parent.apply(this, arguments);
   };
