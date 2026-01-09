@@ -13,10 +13,18 @@ function Main() {
   // Количество пазлов по вертикали и горизонтали
   this.x = 10;
   this.y = 10;
+
+  // Размеры полотна для сбора пазлов
+  this.canvasWidth = 500;
+  this.canvasHeight = 500;
+
+  // Размеры блока с новыми пазлами
+  this.choiserWidth = 200;
+  this.choiserHeight = 500;
 }
 
 Main.prototype.init = function () {
-  var draw = SVG().addTo(".container").size(300, 300);
+  var draw = SVG().attr('inherit', null).addTo(".container").size(300, 300);
   var rect = draw.rect(100, 100);
   rect.attr({ fill: "rgba(255, 107, 166, 1)" });
   rect.click(function () {
@@ -76,4 +84,9 @@ PuzzlCanvas.prototype.draw = function() {
   console.log(this.box);
 
   this.box.css('border', '1px solid #000000');
+  this.drawCompliteBox();
+}
+
+PuzzlCanvas.prototype.drawCompliteBox = function() {
+  $(this.box).append('<div class="compliteBox"></div>');
 }
