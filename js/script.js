@@ -83,7 +83,7 @@ function PuzzlCanvas(){
     .size(this.containerWidth, this.containerHeight);
   
   var rect = this.draw.rect(100, 100);
-  rect.attr({ fill: "rgba(255, 107, 166, 1)" });
+  rect.attr({ fill: "rgba(255, 107, 166, 1)" }).attr('inherit', null);
   rect.click(function () {
     this.fill({ color: "#b32020ff" });
   });
