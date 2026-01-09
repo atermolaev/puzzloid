@@ -78,12 +78,12 @@ function PuzzlCanvas(){
   this._super();
   
   this.draw = SVG()
-    .attr('inherit', null)
+    .attr({ inherit: null })
     .addTo(".container")
     .size(this.containerWidth, this.containerHeight);
   
   var rect = this.draw.rect(100, 100);
-  rect.attr({ fill: "rgba(255, 107, 166, 1)" }).attr('inherit', null);
+  rect.attr({ inherit: null, fill: "rgba(255, 107, 166, 1)" });
   rect.click(function () {
     this.fill({ color: "#b32020ff" });
   });
