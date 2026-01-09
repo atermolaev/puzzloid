@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+        </style>
+        
         <script lang="javascript" src="./js/jquery-3.7.1.min.js"></script>
         <script lang="javascript" src="./js/svg.js"></script>
         <script lang="javascript" src="./js/script.js"></script>
@@ -8,10 +16,12 @@
             window.onload = function(){
                 const main = new Main();
                 const grid = new Grid();
+                const puzzlCanvas = new PuzzlCanvas();
 
                 main.init();
                 grid.getRandomGridArr();
                 console.log(grid.gridArr);
+                puzzlCanvas.draw();
             }
         </script>
     </head>

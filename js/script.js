@@ -63,3 +63,17 @@ Grid.prototype.getRandomGridArr = function () {
 
   return [arTopToBottom, arLeftToRight];
 };
+
+function PuzzlCanvas(){
+  this._super();
+
+  this.box = jQuery('.container');
+}
+
+PuzzlCanvas.inherit(Main);
+
+PuzzlCanvas.prototype.draw = function() {
+  console.log(this.box);
+
+  this.box.css('border', '1px solid #000000');
+}
