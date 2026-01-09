@@ -77,17 +77,22 @@ Grid.prototype.getRandomGridArr = function () {
 function PuzzlCanvas(){
   this._super();
   
-  var draw = SVG().attr('inherit', null).addTo(".container").size(this.containerWidth, this.containerHeight);
-  var rect = draw.rect(100, 100);
+  this.draw = SVG()
+    .attr('inherit', null)
+    .addTo(".container")
+    .size(this.containerWidth, this.containerHeight);
+  
+  var rect = this.draw.rect(100, 100);
   rect.attr({ fill: "rgba(255, 107, 166, 1)" });
   rect.click(function () {
     this.fill({ color: "#b32020ff" });
   });
+
 }
 
 PuzzlCanvas.inherit(Main);
 
-PuzzlCanvas.prototype.draw = function() {
+PuzzlCanvas.prototype.drawInit = function() {
   this.box.css('border', '1px solid #000000');
   this.drawCompliteBox();
 }
