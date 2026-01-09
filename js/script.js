@@ -21,16 +21,18 @@ function Main() {
   // Размеры блока с новыми пазлами
   this.choiserWidth = 200;
   this.choiserHeight = 500;
-}
 
-Main.prototype.init = function () {
-  var draw = SVG().attr('inherit', null).addTo(".container").size(300, 300);
-  var rect = draw.rect(100, 100);
-  rect.attr({ fill: "rgba(255, 107, 166, 1)" });
-  rect.click(function () {
-    this.fill({ color: "#b32020ff" });
-  });
-};
+  // Размеры контейнера для игры
+  this.containerWidth = this.canvasWidth + this.choiserWidth + 100;
+  this.containerHeight = this.canvasHeight + 100;
+
+  this.box = jQuery('.container');
+  this.box.css('margin', '0 auto');
+  this.box.css('display', 'flex');
+  this.box.css('justify-content', 'space-around');
+  this.box.css('width', `${this.containerWidth}px`);
+  this.box.css('height', `${this.containerHeight}px`);
+}
 
 Main.prototype.getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -74,15 +76,18 @@ Grid.prototype.getRandomGridArr = function () {
 
 function PuzzlCanvas(){
   this._super();
-
-  this.box = jQuery('.container');
+  
+  var draw = SVG().attr('inherit', null).addTo(".container").size(this.containerWidth, this.containerHeight);
+  var rect = draw.rect(100, 100);
+  rect.attr({ fill: "rgba(255, 107, 166, 1)" });
+  rect.click(function () {
+    this.fill({ color: "#b32020ff" });
+  });
 }
 
 PuzzlCanvas.inherit(Main);
 
 PuzzlCanvas.prototype.draw = function() {
-  console.log(this.box);
-
   this.box.css('border', '1px solid #000000');
   this.drawCompliteBox();
 }
