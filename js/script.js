@@ -93,7 +93,7 @@ function PuzzlCanvas(){
 PuzzlCanvas.inherit(Main);
 
 PuzzlCanvas.prototype.drawInit = function() {
-  this.box.css('border', '1px solid #000000');
+  this.box.css('border', '1px solid #ABABAB');
   this.drawCompliteBox();
 }
 
