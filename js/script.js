@@ -90,7 +90,6 @@ function PuzzlCanvas(){
 
   rect.click(function () {
     const currentColor = rect.attr('fill')
-    console.log('rect', currentColor);
 
     this.fill({ color: currentColor === colorLightRed ? colorRed : colorLightRed });
   });
