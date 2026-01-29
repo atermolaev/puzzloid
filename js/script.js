@@ -81,11 +81,18 @@ function PuzzlCanvas(){
     .attr({ inherit: null })
     .addTo(".container")
     .size(this.containerWidth, this.containerHeight);
+
+  const colorLightRed = "rgba(255, 107, 166, 1)";
+  const colorRed = "rgba(235, 7, 15, 1)";
   
   var rect = this.draw.rect(100, 100);
-  rect.attr({ inherit: null, fill: "rgba(255, 107, 166, 1)" });
+  rect.attr({ inherit: null, fill: colorLightRed });
+
   rect.click(function () {
-    this.fill({ color: "#b32020ff" });
+    const currentColor = rect.attr('fill')
+    console.log('rect', currentColor);
+
+    this.fill({ color: currentColor === colorLightRed ? colorRed : colorLightRed });
   });
 
 }
