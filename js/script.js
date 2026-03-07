@@ -18,20 +18,31 @@ function Main() {
   this.canvasWidth = 500;
   this.canvasHeight = 500;
 
-  // Размеры блока с новыми пазлами
-  this.choiserWidth = 200;
-  this.choiserHeight = 500;
+  // Данные блока с новыми пазлами
+  this.choiserWidth = 150;
+  this.choiserHeight = 525;
+  this.choiserX = 575;
+  this.choiserY = 25;
+
+  // Данные бока для сбора пазлов
+  this.complitedWidth = 525;
+  this.complitedHeight = 525;
+  this.complitedX = 25;
+  this.complitedY = 25;
 
   // Размеры контейнера для игры
   this.containerWidth = this.canvasWidth + this.choiserWidth + 100;
-  this.containerHeight = this.canvasHeight + 100;
+  this.containerHeight = this.canvasHeight + 75;
 
-  this.box = jQuery('.container');
-  this.box.css('margin', '0 auto');
-  this.box.css('display', 'flex');
-  this.box.css('justify-content', 'space-around');
-  this.box.css('width', `${this.containerWidth}px`);
-  this.box.css('height', `${this.containerHeight}px`);
+  this.box = jQuery(".container");
+  this.box.css("margin", "0 auto");
+  this.box.css("display", "flex");
+  this.box.css("justify-content", "space-around");
+  this.box.css("width", `${this.containerWidth}px`);
+  this.box.css("height", `${this.containerHeight}px`);
+
+  this.colorMainBorder = "#ABABAB";
+  this.colorInnerBoxesBG = "#FFFFFF";
 }
 
 Main.prototype.getRandomInt = function (min, max) {
@@ -74,35 +85,66 @@ Grid.prototype.getRandomGridArr = function () {
   return [arTopToBottom, arLeftToRight];
 };
 
-function PuzzlCanvas(){
+function PuzzlCanvas() {
   this._super();
-  
+
   this.draw = SVG()
     .attr({ inherit: null })
     .addTo(".container")
     .size(this.containerWidth, this.containerHeight);
-
-  const colorLightRed = "rgba(255, 107, 166, 1)";
-  const colorRed = "rgba(235, 7, 15, 1)";
-  
-  var rect = this.draw.rect(100, 100);
-  rect.attr({ inherit: null, fill: colorLightRed });
-
-  rect.click(function () {
-    const currentColor = rect.attr('fill')
-
-    this.fill({ color: currentColor === colorLightRed ? colorRed : colorLightRed });
-  });
-
 }
 
 PuzzlCanvas.inherit(Main);
 
-PuzzlCanvas.prototype.drawInit = function() {
-  this.box.css('border', '1px solid #ABABAB');
-  this.drawCompliteBox();
-}
+PuzzlCanvas.prototype.drawInit = function () {
+  this.box.css("border", `1px solid ${this.colorMainBorder}`);
+  this.drawChoiserBox();
+  this.drawComplitedCanvas();
+  this.drawFirstRect();
+};
 
-PuzzlCanvas.prototype.drawCompliteBox = function() {
-  $(this.box).append('<div class="compliteBox"></div>');
-}
+PuzzlCanvas.prototype.drawFirstRect = function () {
+  const colorLightRed = "rgba(255, 107, 166, 1)";
+  const colorRed = "rgba(235, 7, 15, 1)";
+
+  var rect = this.draw.rect(100, 100);
+  rect.attr({ inherit: null, fill: colorLightRed });
+
+  rect.click(function () {
+    const currentColor = rect.attr("fill");
+
+    this.fill({
+      color: currentColor === colorLightRed ? colorRed : colorLightRed,
+    });
+  });
+
+  rect.attr({ x: 100, y: 100 });
+};
+
+// Рисум бокс для приходящих пазлов
+PuzzlCanvas.prototype.drawChoiserBox = function () {
+  const choiserRect = this.draw.rect(this.choiserWidth, this.choiserHeight);
+  choiserRect
+    .attr({
+      inherit: null,
+      x: this.choiserX,
+      y: this.choiserY,
+      fill: this.colorInnerBoxesBG,
+    })
+    .stroke({ width: 1, color: this.colorMainBorder });
+};
+
+PuzzlCanvas.prototype.drawComplitedCanvas = function () {
+  const complitedRect = this.draw.rect(
+    this.complitedWidth,
+    this.complitedHeight,
+  );
+  complitedRect
+    .attr({
+      inherit: null,
+      x: this.complitedX,
+      y: this.complitedY,
+      fill: this.colorInnerBoxesBG,
+    })
+    .stroke({ width: 1, color: this.colorMainBorder });
+};
