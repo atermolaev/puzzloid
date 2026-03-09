@@ -100,25 +100,25 @@ PuzzlCanvas.prototype.drawInit = function () {
   this.box.css("border", `1px solid ${this.colorMainBorder}`);
   this.drawChoiserBox();
   this.drawComplitedCanvas();
-  this.drawFirstRect();
+  this.drawFirstPuzzl();
 };
 
-PuzzlCanvas.prototype.drawFirstRect = function () {
+PuzzlCanvas.prototype.drawFirstPuzzl = function () {
   const colorLightRed = "rgba(255, 107, 166, 1)";
   const colorRed = "rgba(235, 7, 15, 1)";
 
-  var rect = this.draw.rect(100, 100);
-  rect.attr({ inherit: null, fill: colorLightRed });
+  const puzzl = this.draw
+    .path("M0 0 H50 A20 20 0 1 0 100 50 v25 C50 125 0 85 0 85 z")
+    .move(100, 100);
 
-  rect.click(function () {
-    const currentColor = rect.attr("fill");
+  puzzl.attr({ inherit: null, x: 100, y: 100 }).fill(colorLightRed);
+  puzzl.click(function () {
+    const currentColor = puzzl.attr("fill");
 
     this.fill({
       color: currentColor === colorLightRed ? colorRed : colorLightRed,
     });
   });
-
-  rect.attr({ x: 100, y: 100 });
 };
 
 // Рисум бокс для приходящих пазлов
