@@ -108,7 +108,7 @@ PuzzlCanvas.prototype.drawFirstPuzzl = function () {
   const colorRed = "rgba(235, 7, 15, 1)";
 
   const puzzl = this.draw
-    .path("M0 0 H50 A20 20 0 1 0 100 50 v25 C50 125 0 85 0 85 z")
+    .path("M 0 0 L 100 0 L 100 100 L 0 100 Z")
     .move(100, 100);
 
   puzzl.attr({ inherit: null, x: 100, y: 100 }).fill(colorLightRed);
