@@ -109,7 +109,7 @@ PuzzlCanvas.prototype.drawFirstPuzzl = function () {
 
   const puzzl = this.draw
     .path("M 0 0 L 100 0 L 100 100 L 0 100 Z")
-    .move(100, 100);
+    .move(600, 50);
 
   puzzl.attr({ inherit: null, x: 100, y: 100 }).fill(colorLightRed);
   puzzl.click(function () {
